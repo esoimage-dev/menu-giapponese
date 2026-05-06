@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lunch Menu – Japanese</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #111111;
+    --white: #f5f2ed;
+    --off-white: #ede9e2;
+    --accent: #111111;
+    --light-line: #d0cbc2;
+    --page-w: 560px;
+    --page-h: 1120px;
+    --pad: 48px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #c8c2b8;
+    font-family: 'Barlow Condensed', 'Noto Sans JP', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 40px 20px;
+  }
+
+  /* ── PAGE SHELL ── */
+  .page {
+    width: var(--page-w);
+    min-height: var(--page-h);
+    background: var(--white);
+    position: relative;
+    overflow: visible;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.22);
+  }
+
+  /* ══════════════════════════════════
+     COVER PAGE
+  ══════════════════════════════════ */
+  .cover {
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--pad);
+    height: var(--page-h);
+  }
+
+  .cover-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cover-lunch {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 110px;
+    line-height: 0.88;
+    color: var(--black);
+    letter-spacing: 0.01em;
+  }
+
+  .cover-menu-ja {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--black);
+    letter-spacing: -0.01em;
+    margin-top: 12px;
+  }
+
+  .cover-divider {
+    width: 48px;
+    height: 2px;
+    background: rgba(17,17,17,0.2);
+    margin: 28px 0;
+  }
+
+  .cover-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    color: rgba(17,17,17,0.4);
+    text-transform: uppercase;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .cover-note-ja {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    color: rgba(17,17,17,0.35);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .logo-placeholder {
+    width: 80px;
+    height: 80px;
+    border: 1.5px dashed rgba(17,17,17,0.2);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: rgba(17,17,17,0.25);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ══════════════════════════════════
+     CONTENT PAGES
+  ══════════════════════════════════ */
+  .content-page {
+    padding: var(--pad) var(--pad) 36px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Section header */
+  .section-header {
+    margin-bottom: 28px;
+    padding-bottom: 0;
+  }
+
+  .section-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .section-title-ja {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 0.9;
+    color: var(--black);
+    letter-spacing: -0.01em;
+  }
+
+  .section-title-en {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    line-height: 0.9;
+    color: var(--black);
+    letter-spacing: 0.01em;
+  }
+
+  .section-rule {
+    width: 100%;
+    height: 1.5px;
+    background: var(--black);
+    margin-top: 18px;
+  }
+
+  /* Gluten free note */
+  .gf-note {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(17,17,17,0.45);
+    margin-bottom: 20px;
+    margin-top: -4px;
+  }
+
+  /* Dish row */
+  .dish {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .dish-info { flex: 1; }
+
+  .dish-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 3px;
+  }
+
+  .dish-name-ja {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--black);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .dish-name-en {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: rgba(17,17,17,0.45);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .dish-tags {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    color: rgba(17,17,17,0.4);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .dish-desc {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-size: 10.5px;
+    color: rgba(17,17,17,0.62);
+    line-height: 1.65;
+    letter-spacing: 0.03em;
+    margin-top: 3px;
+    max-width: 380px;
+  }
+
+  .dish-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--black);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+
+  /* Sub-section (same weight as main categories) */
+  .sub-section {
+    margin-top: 28px;
+    margin-bottom: 0;
+  }
+
+  .sub-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+
+  .sub-title-ja {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    font-size: 56px;
+    color: var(--black);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+  }
+
+  .sub-title-en {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    color: var(--black);
+    letter-spacing: 0.01em;
+    line-height: 0.9;
+  }
+
+  .sub-rule {
+    width: 100%;
+    height: 1.5px;
+    background: var(--black);
+    margin-top: 18px;
+    margin-bottom: 20px;
+  }
+
+  /* Footer legend */
+  .footer-legend {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--light-line);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .legend-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    color: rgba(17,17,17,0.4);
+    text-transform: uppercase;
+  }
+
+  /* Drinks */
+  .drink-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    gap: 16px;
+  }
+
+  .drink-info { flex: 1; }
+
+  .drink-name-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+
+  .drink-name-ja {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--black);
+  }
+
+  .drink-name-en {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: rgba(17,17,17,0.45);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .drink-sub {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    color: rgba(17,17,17,0.5);
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+  }
+
+  .drink-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--black);
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+
+  @media print {
+    body { background: white; padding: 0; gap: 0; }
+    .page { box-shadow: none; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     PAGE 1 — COVER
+════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-lunch">LUNCH</div>
+    <div class="cover-menu-ja">ランチメニュー</div>
+    <div class="cover-divider"></div>
+    <div class="cover-sub">Restaurant Pizzeria</div>
+  </div>
+  <div class="cover-bottom">
+    <div></div>
+    <div class="cover-note-ja">
+      アレルギーについては<br>スタッフにお申し付けください
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 2 — PASTA / SALADS / MAINS
+════════════════════════════════════════ -->
+<div class="page content-page">
+  <div class="section-header">
+    <div class="section-title-row">
+      <span class="section-title-ja">パスタ</span>
+      <span class="section-title-en">PASTA</span>
+    </div>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="gf-note">グルテンフリーパスタ +$5 &nbsp;·&nbsp; Gluten Free Pasta +$5</div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">スパゲッティ・ポモドーロ</span>
+        <span class="dish-name-en">SPAGHETTI AL POMODORO</span>
+        <span class="dish-tags">(V)</span>
+      </div>
+      <div class="dish-desc">フレッシュトマトソース、バジル、パルメザンチーズ</div>
+    </div>
+    <div class="dish-price">25</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">スパゲッティ・カルボナーラ</span>
+        <span class="dish-name-en">SPAGHETTI CARBONARA</span>
+      </div>
+      <div class="dish-desc">卵とペコリーノチーズのクリーミーソース、カリカリのグアンチャーレ、挽きたてブラックペッパー</div>
+    </div>
+    <div class="dish-price">26</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ニョッキ・クワトロフォルマッジ</span>
+        <span class="dish-name-en">GNOCCHI QUATTRO FORMAGGI</span>
+        <span class="dish-tags">(V)</span>
+      </div>
+      <div class="dish-desc">やわらかいニョッキ、ゴルゴンゾーラ・パルメザン・プロヴォローネ・ペコリーノの濃厚な4種チーズソース</div>
+    </div>
+    <div class="dish-price">26</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">カヴァテッリ・ボロネーゼ</span>
+        <span class="dish-name-en">CAVATELLI ALLA BOLOGNESE</span>
+      </div>
+      <div class="dish-desc">じっくり煮込んだビーフラグー、リッチなナポリソース、パルメザンチーズがけ</div>
+    </div>
+    <div class="dish-price">25</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">リングイネ・ボンゴレ</span>
+        <span class="dish-name-en">LINGUINE ALLE VONGOLE</span>
+        <span class="dish-tags">(DF)</span>
+      </div>
+      <div class="dish-desc">あさり、チェリートマト、フレッシュパセリ、白ワインソース</div>
+    </div>
+    <div class="dish-price">28</div>
+  </div>
+
+  <!-- SALADS -->
+  <div class="sub-section">
+    <div class="sub-title-row">
+      <span class="sub-title-ja">サラダ</span>
+      <span class="sub-title-en">SALADS</span>
+    </div>
+    <div class="sub-rule"></div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ブラータ・カプレーゼ</span>
+        <span class="dish-name-en">BURRATA CAPRESE</span>
+        <span class="dish-tags">(V, GF)</span>
+      </div>
+      <div class="dish-desc">イタリア産ブラータチーズ、ルッコラ、チェリートマト、ズッキーニクリーム、バルサミコドレッシング</div>
+    </div>
+    <div class="dish-price">22.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">海老のサラダ</span>
+        <span class="dish-name-en">PRAWNS SALAD</span>
+        <span class="dish-tags">(GF)</span>
+      </div>
+      <div class="dish-desc">地元産の海老、ミックスサラダ、トマト、キヌア、にんじん、さわやかなヨーグルトクリーム</div>
+    </div>
+    <div class="dish-price">25.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">チキンサラダ</span>
+        <span class="dish-name-en">CHICKEN SALAD</span>
+        <span class="dish-tags">(GF)</span>
+      </div>
+      <div class="dish-desc">ミックスリーフ、チキン、オリーブ、パプリカソース、バルサミコドレッシング、削りパルメザン</div>
+    </div>
+    <div class="dish-price">22.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ラ・ヴェガーナ</span>
+        <span class="dish-name-en">LA VEGANA</span>
+        <span class="dish-tags">(VG, GF)</span>
+      </div>
+      <div class="dish-desc">ミックスリーフ、カラフルなキヌア、セロリアックソース、きのこ、揚げカリフラワー、アーモンドフレーク</div>
+    </div>
+    <div class="dish-price">22.5</div>
+  </div>
+
+  <!-- MAINS -->
+  <div class="sub-section">
+    <div class="sub-title-row">
+      <span class="sub-title-ja">メイン</span>
+      <span class="sub-title-en">MAINS</span>
+    </div>
+    <div class="sub-rule"></div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ラザニア</span>
+        <span class="dish-name-en">LASAGNA</span>
+      </div>
+      <div class="dish-desc">伝統的な重ね生地、じっくり煮込んだビーフラグー、濃厚ベシャメルソース</div>
+    </div>
+    <div class="dish-price">26.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">鶏もも肉のカッチャトーラ</span>
+        <span class="dish-name-en">POLLO ALLA CACCIATORA</span>
+        <span class="dish-tags">(DF)</span>
+      </div>
+      <div class="dish-desc">チェリートマト・オリーブ・ケーパー・赤ワインナポリソースで煮込んだ鶏もも肉、自家製フォカッチャ添え</div>
+    </div>
+    <div class="dish-price">26.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">イカと海老のフリット</span>
+        <span class="dish-name-en">CALAMARI &amp; PRAWNS FRITTURA</span>
+        <span class="dish-tags">(DF, GF)</span>
+      </div>
+      <div class="dish-desc">サクサクに揚げたイカと海老、フライドポテト・サラダ・アイオリソース添え</div>
+    </div>
+    <div class="dish-price">26.5</div>
+  </div>
+
+  <div class="footer-legend">
+    <span class="legend-item">グルテンフリー (GF)</span>
+    <span class="legend-item">ベジタリアン (V)</span>
+    <span class="legend-item">ヴィーガン (VG)</span>
+    <span class="legend-item">乳製品不使用 (DF)</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 3 — PIZZA
+════════════════════════════════════════ -->
+<div class="page content-page">
+  <div class="section-header">
+    <div class="section-title-row">
+      <span class="section-title-ja">ピザ</span>
+      <span class="section-title-en">PIZZA</span>
+    </div>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="gf-note">グルテンフリー生地 +$8 &nbsp;·&nbsp; Gluten Free Base +$8</div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">マルゲリータ</span>
+        <span class="dish-name-en">MARGHERITA</span>
+        <span class="dish-tags">(V)</span>
+      </div>
+      <div class="dish-desc">サン・マルツァーノトマト、モッツァレラ、バジル、エキストラバージンオリーブオイル</div>
+    </div>
+    <div class="dish-price">26.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ブファリーナ</span>
+        <span class="dish-name-en">BUFALINA</span>
+      </div>
+      <div class="dish-desc">サン・マルツァーノトマト、フレッシュ水牛モッツァレラ、プロシュット・クルード、チェリートマト、バジル、オリーブオイル</div>
+    </div>
+    <div class="dish-price">36</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">カプリチョーザ</span>
+        <span class="dish-name-en">CAPRICCIOSA</span>
+      </div>
+      <div class="dish-desc">サン・マルツァーノトマト、モッツァレラ、ハム、マッシュルーム、アーティチョーク、オリーブ</div>
+    </div>
+    <div class="dish-price">30.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ヴェジタリアーナ 2.0</span>
+        <span class="dish-name-en">VEGETARIANA 2.0</span>
+        <span class="dish-tags">(V)</span>
+      </div>
+      <div class="dish-desc">ズッキーニクリームベース、モッツァレラ、揚げナス、ローストパプリカ</div>
+    </div>
+    <div class="dish-price">31.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">サルデーニャ</span>
+        <span class="dish-name-en">SARDEGNA</span>
+        <span class="dish-tags">(VG)</span>
+      </div>
+      <div class="dish-desc">サン・マルツァーノトマト、ヴィーガンモッツァレラ、チェリートマト、アーティチョーク、オレガノ、バジル</div>
+    </div>
+    <div class="dish-price">29.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ウンブリア</span>
+        <span class="dish-name-en">UMBRIA</span>
+        <span class="dish-tags">(VG)</span>
+      </div>
+      <div class="dish-desc">ヴィーガンモッツァレラ、かぼちゃのピューレ、マッシュルーム、くるみ、トリュフクリーム</div>
+    </div>
+    <div class="dish-price">29.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ナポレ</span>
+        <span class="dish-name-en">NAPULÉ</span>
+      </div>
+      <div class="dish-desc">モッツァレラ、スモークスカモルツァ、マイルドサラミ、イタリア産菜の花（フリアリエッリ）</div>
+    </div>
+    <div class="dish-price">34.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ディアヴォラ</span>
+        <span class="dish-name-en">DIAVOLA</span>
+      </div>
+      <div class="dish-desc">サン・マルツァーノトマト、モッツァレラ、カラブリア産スパイシーサラミ、キャラメライズドオニオン、'ンドゥイヤ</div>
+    </div>
+    <div class="dish-price">31.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">レオナルド・ダ・ヴィンチ</span>
+        <span class="dish-name-en">LEONARDO DA VINCI</span>
+      </div>
+      <div class="dish-desc">サン・マルツァーノトマト、モッツァレラ、プロシュット・クルード、ルッコラ、削りパルメザン、オリーブオイル</div>
+    </div>
+    <div class="dish-price">34.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">モルタッツァ</span>
+        <span class="dish-name-en">MORTAZZA</span>
+      </div>
+      <div class="dish-desc">モッツァレラ、モルタデッラ、セミドライトマト、ピスタチオブラータ</div>
+    </div>
+    <div class="dish-price">35</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ゴッドファーザー</span>
+        <span class="dish-name-en">IL PADRINO (THE GODFATHER)</span>
+      </div>
+      <div class="dish-desc">サン・マルツァーノトマト、モッツァレラ、ソプレッササラミ、ルッコラ、チェリートマト、ブラータ</div>
+    </div>
+    <div class="dish-price">36.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">クワトロフォルマッジ・タルトゥーフォ</span>
+        <span class="dish-name-en">QUATTRO FORMAGGI E TARTUFO</span>
+        <span class="dish-tags">(V)</span>
+      </div>
+      <div class="dish-desc">モッツァレラ、ゴルゴンゾーラ、スモークスカモルツァ、パルメザン、トリュフクリーム</div>
+    </div>
+    <div class="dish-price">31.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ズッコッタ</span>
+        <span class="dish-name-en">ZUCCOTTA</span>
+      </div>
+      <div class="dish-desc">かぼちゃクリームベース、モッツァレラ、グアンチャーレ、すりおろしペコリーノ</div>
+    </div>
+    <div class="dish-price">34</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">フルッティ・ディ・マーレ</span>
+        <span class="dish-name-en">FRUTTI DI MARE</span>
+        <span class="dish-tags">(DF)</span>
+      </div>
+      <div class="dish-desc">サン・マルツァーノガーリックトマトソース、海老、イカ、ムール貝、あさり、パセリ</div>
+    </div>
+    <div class="dish-price">39.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">カルツォーネ（折りたたみピザ）</span>
+        <span class="dish-name-en">CALZONE (FOLDED PIZZA)</span>
+      </div>
+      <div class="dish-desc">サン・マルツァーノトマト、モッツァレラ、マイルドサラミ、リコッタ、ブラックペッパー</div>
+    </div>
+    <div class="dish-price">30.5</div>
+  </div>
+
+  <div class="footer-legend">
+    <span class="legend-item">グルテンフリー (GF)</span>
+    <span class="legend-item">ベジタリアン (V)</span>
+    <span class="legend-item">ヴィーガン (VG)</span>
+    <span class="legend-item">乳製品不使用 (DF)</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 4 — DOLCE + SOFT DRINKS
+════════════════════════════════════════ -->
+<div class="page content-page">
+  <div class="section-header">
+    <div class="section-title-row">
+      <span class="section-title-ja">デザート</span>
+      <span class="section-title-en">DOLCE</span>
+    </div>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ティラミス</span>
+        <span class="dish-name-en">TIRAMISÙ</span>
+      </div>
+      <div class="dish-desc">エスプレッソとマスカルポーネの定番イタリアンデザート、ココアパウダーがけ</div>
+    </div>
+    <div class="dish-price">16.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">カンノーロ・シチリアーノ</span>
+        <span class="dish-name-en">CANNOLO SICILIANO</span>
+      </div>
+      <div class="dish-desc">サクサクのカンノーロシェル、なめらかなリコッタクリーム、チョコチップ、オレンジピール、砕きピスタチオ</div>
+    </div>
+    <div class="dish-price">12.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ヌテッラジェラート</span>
+        <span class="dish-name-en">GELATO ALLA NUTELLA</span>
+        <span class="dish-tags">(GF)</span>
+      </div>
+      <div class="dish-desc">自家製ヌテッラジェラート、ホイップクリーム、砕きヘーゼルナッツ</div>
+    </div>
+    <div class="dish-price">15.5</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">レモン＆マンゴーソルベ</span>
+        <span class="dish-name-en">LEMON AND MANGO SORBET</span>
+        <span class="dish-tags">(VG, GF)</span>
+      </div>
+      <div class="dish-desc">さわやかなヴィーガンソルベ、タンジーな赤いベリーのクーリ添え</div>
+    </div>
+    <div class="dish-price">15.5</div>
+  </div>
+
+  <!-- SOFT DRINKS -->
+  <div class="sub-section">
+    <div class="sub-title-row">
+      <span class="sub-title-ja">ドリンク</span>
+      <span class="sub-title-en">SOFT DRINKS</span>
+    </div>
+    <div class="sub-rule"></div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-ja">スパークリングウォーター 750ml</span>
+        <span class="drink-name-en">SPARKLING WATER 750ml</span>
+      </div>
+    </div>
+    <div class="drink-price">8</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-ja">サンペレグリノ スパークリングウォーター 1L</span>
+        <span class="drink-name-en">SANPELLEGRINO SPARKLING WATER 1L</span>
+      </div>
+    </div>
+    <div class="drink-price">12</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-ja">サンペレグリノ フルーツドリンク</span>
+        <span class="drink-name-en">SAN PELLEGRINO SOFT DRINKS</span>
+      </div>
+      <div class="drink-sub">オレンジ · レモン · クレメンティーナ · ブラッドオレンジ<br>Aranciata · Limonata · Clementina · Arancia Rossa</div>
+    </div>
+    <div class="drink-price">5.5</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-ja">定番ソフトドリンク</span>
+        <span class="drink-name-en">CLASSIC SOFT DRINKS</span>
+      </div>
+      <div class="drink-sub">コカ・コーラ · ゼロコーラ · LLB</div>
+    </div>
+    <div class="drink-price">5.5</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-ja">ジュース</span>
+        <span class="drink-name-en">JUICE</span>
+      </div>
+      <div class="drink-sub">パイナップル · オレンジ · アップル · マンゴー</div>
+    </div>
+    <div class="drink-price">5</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-ja">ジンジャービア</span>
+        <span class="drink-name-en">GINGER BEER</span>
+      </div>
+    </div>
+    <div class="drink-price">6</div>
+  </div>
+
+  <div class="footer-legend">
+    <span class="legend-item">グルテンフリー (GF)</span>
+    <span class="legend-item">ベジタリアン (V)</span>
+    <span class="legend-item">ヴィーガン (VG)</span>
+    <span class="legend-item">乳製品不使用 (DF)</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 5 — COFFEE
+════════════════════════════════════════ -->
+<div class="page content-page">
+  <div class="section-header">
+    <div class="section-title-row">
+      <span class="section-title-ja">コーヒー</span>
+      <span class="section-title-en">COFFEE</span>
+    </div>
+    <div class="section-rule"></div>
+  </div>
+
+  <div style="display:flex; justify-content:flex-end; margin-bottom:10px; margin-top:-8px;">
+    <div style="font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:rgba(17,17,17,0.4); width:80px; text-align:center;">M · L</div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">エスプレッソ</span>
+        <span class="dish-name-en">ESPRESSO</span>
+      </div>
+      <div class="dish-desc">シングル · ダブル &nbsp;/&nbsp; Single · Double</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:flex-start; padding-top:1px;">
+      <div class="dish-price">3.5</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:rgba(17,17,17,0.35);">/</div>
+      <div class="dish-price">4.5</div>
+    </div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">カプチーノ · カフェラテ · フラットホワイト</span>
+        <span class="dish-name-en">CAPPUCCINO · LATTE · FLAT WHITE</span>
+      </div>
+      <div class="dish-desc">Mサイズ · Lサイズ &nbsp;/&nbsp; Medium · Large</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:flex-start; padding-top:1px;">
+      <div class="dish-price">6.5</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:rgba(17,17,17,0.35);">/</div>
+      <div class="dish-price">7.5</div>
+    </div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ホットチョコレート</span>
+        <span class="dish-name-en">HOT CHOCOLATE</span>
+      </div>
+      <div class="dish-desc">Mサイズ · Lサイズ &nbsp;/&nbsp; Medium · Large</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:flex-start; padding-top:1px;">
+      <div class="dish-price">6.5</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:rgba(17,17,17,0.35);">/</div>
+      <div class="dish-price">7.5</div>
+    </div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">ロングブラック</span>
+        <span class="dish-name-en">LONG BLACK</span>
+      </div>
+      <div class="dish-desc">Mサイズ · Lサイズ &nbsp;/&nbsp; Medium · Large</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:flex-start; padding-top:1px;">
+      <div class="dish-price">5.5</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:rgba(17,17,17,0.35);">/</div>
+      <div class="dish-price">6.5</div>
+    </div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-info">
+      <div class="dish-title-row">
+        <span class="dish-name-ja">チャイラテ</span>
+        <span class="dish-name-en">CHAI LATTE</span>
+      </div>
+      <div class="dish-desc">Mサイズ · Lサイズ &nbsp;/&nbsp; Medium · Large</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:flex-start; padding-top:1px;">
+      <div class="dish-price">7</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:22px; color:rgba(17,17,17,0.35);">/</div>
+      <div class="dish-price">8</div>
+    </div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-ja">アイスコーヒー各種</span>
+        <span class="drink-name-en">ICED COFFEES</span>
+      </div>
+      <div class="drink-sub">コーヒー · チャイ · モカ · ラテ · チョコレート<br>Coffee · Chai · Mocha · Latte · Chocolate</div>
+    </div>
+    <div class="drink-price">9</div>
+  </div>
+
+  <div class="drink-row">
+    <div class="drink-info">
+      <div class="drink-name-row">
+        <span class="drink-name-ja">ティー</span>
+        <span class="drink-name-en">TEA</span>
+      </div>
+      <div class="drink-sub">イングリッシュブレックファスト · グリーン · ペパーミント · カモミール · レモングラス＆ジンジャー<br>English Breakfast · Green · Peppermint · Chamomile · Lemongrass &amp; Ginger</div>
+    </div>
+    <div class="drink-price">5</div>
+  </div>
+
+  <div style="margin-top:auto; padding-top:20px; border-top:1px solid var(--light-line);">
+    <div style="font-family:'Noto Sans JP',sans-serif; font-weight:300; font-size:10px; color:rgba(17,17,17,0.4); line-height:2; letter-spacing:0.03em;">
+      週末は10%のサービス料が加算されます &nbsp;·&nbsp; 10% surcharge on Weekends<br>
+      祝日は15%のサービス料が加算されます &nbsp;·&nbsp; 15% surcharge on Public Holidays
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 6 — RESTAURANT INFO
+════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div style="height:140px;"></div>
+    <div class="cover-divider"></div>
+    <div class="cover-sub">Restaurant Pizzeria</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:28px; padding: 20px 0;">
+
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:rgba(17,17,17,0.4);">住所 · Location</div>
+      <div style="font-family:'Noto Sans JP',sans-serif; font-weight:500; font-size:15px; color:var(--black); line-height:1.6;">The Pier · ウォーターフロント<br>Pier Point Rd, Cairns City</div>
+    </div>
+
+    <div style="width:100%; height:1px; background:var(--light-line);"></div>
+
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:rgba(17,17,17,0.4);">営業時間 · Hours</div>
+      <div style="font-family:'Noto Sans JP',sans-serif; font-weight:300; font-size:14px; color:var(--black); line-height:2;">
+        <span style="font-weight:500;">月曜〜日曜</span> &nbsp;Monday – Sunday<br>
+        ランチ Lunch &nbsp;&nbsp;11:30 – 16:30<br>
+        ディナー Dinner &nbsp;16:30 – 21:00
+      </div>
+    </div>
+
+    <div style="width:100%; height:1px; background:var(--light-line);"></div>
+
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; color:rgba(17,17,17,0.4);">お問い合わせ · Contact</div>
+      <div style="font-family:'Barlow Condensed',sans-serif; font-weight:400; font-size:15px; letter-spacing:0.05em; color:var(--black); line-height:2;">
+        (07) 4000 0865<br>
+        @vitaliasrestaurant<br>
+        vitalias.com.au
+      </div>
+    </div>
+
+  </div>
+  <div class="cover-bottom">
+    <div></div>
+    <div class="cover-note-ja">
+      アレルギーについては<br>スタッフにお申し付けください
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
